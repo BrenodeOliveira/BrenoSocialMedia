@@ -1,7 +1,8 @@
-package br.com.breno.brenosocialmedia
+package br.com.breno.brenosocialmedia.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.breno.brenosocialmedia.R
 
 class MainActivity : AppCompatActivity() {
 
