@@ -1,6 +1,8 @@
 package br.com.breno.brenosocialmedia.presentation
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(),View.OnClickListener {
 
     private lateinit var mViewModel : LoginViewModel
 
@@ -24,23 +26,14 @@ class LoginActivity : AppCompatActivity() {
 
         mViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        getData()
+        btn_login.setOnClickListener(this)
     }
 
-    fun getData() {
-        val endpoint = RetrofitInicializer().postsService()
-        val callback = endpoint.getPosts()
-
-        callback.enqueue(object : Callback<List<Posts>> {
-            override fun onFailure(call: Call<List<Posts>>, t: Throwable) {
-            }
-
-            override fun onResponse(call: Call<List<Posts>>, response: Response<List<Posts>>) {
-                response.body()?.forEach{
-                    txt_example.text = txt_example.text.toString().plus(it.body)
-                }
-            }
-
-        })
+    override fun onClick(v: View) {
+        val id = v.id
+        if(id == R.id.btn_login) {
+            Toast.makeText(this@LoginActivity, "Botao clicado", Toast.LENGTH_LONG).show()
+        }
     }
+
 }
