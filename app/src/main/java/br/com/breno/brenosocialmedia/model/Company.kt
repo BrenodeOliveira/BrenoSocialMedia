@@ -1,9 +1,12 @@
 package br.com.breno.brenosocialmedia.model
 
-import java.io.Serializable
+import com.google.gson.annotations.SerializedName
 
-data class Company(
+data class Company (
+    @SerializedName("name")
     val name: String,
+    @SerializedName("catchPhrase")
     val catchPhrase: String,
+    @SerializedName("bs")
     val bs: String
-) : Serializable
+)
