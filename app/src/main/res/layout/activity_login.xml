@@ -73,7 +73,6 @@
                     android:id="@+id/checkbox_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="dp"
                     android:text="@string/keep_logged"
                     app:layout_constraintLeft_toLeftOf="@id/et_user"
                     app:layout_constraintRight_toRightOf="@id/et_user"
