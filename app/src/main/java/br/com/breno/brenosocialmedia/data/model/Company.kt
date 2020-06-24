@@ -1,4 +1,4 @@
-package br.com.breno.brenosocialmedia.model
+package br.com.breno.brenosocialmedia.data.model
 
 import com.google.gson.annotations.SerializedName
 

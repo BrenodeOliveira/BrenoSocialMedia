@@ -1,10 +1,9 @@
-package br.com.breno.brenosocialmedia
+package br.com.breno.brenosocialmedia.data.retrofit
 
 import br.com.breno.brenosocialmedia.data.service.PostsService
 import br.com.breno.brenosocialmedia.data.service.UsersService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class RetrofitInicializer {
      private val retrofit = Retrofit.Builder()

@@ -4,17 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.breno.brenosocialmedia.R
-import br.com.breno.brenosocialmedia.RetrofitInicializer
-import br.com.breno.brenosocialmedia.data.service.PostsService
-import br.com.breno.brenosocialmedia.model.Posts
 import br.com.breno.brenosocialmedia.viewModel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity(),View.OnClickListener {
 

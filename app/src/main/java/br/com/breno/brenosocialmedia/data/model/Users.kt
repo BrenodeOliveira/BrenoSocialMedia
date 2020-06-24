@@ -1,4 +1,4 @@
-package br.com.breno.brenosocialmedia.model
+package br.com.breno.brenosocialmedia.data.model
 
 import android.location.Address
 import com.google.gson.annotations.SerializedName
