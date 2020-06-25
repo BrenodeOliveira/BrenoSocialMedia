@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
-    val postsLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    val postsLiveData: MutableLiveData<Int> = MutableLiveData()
 
     fun checkUser(username: String) {
         if (username.isNotEmpty()) {
@@ -22,24 +22,30 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 ) {
                     //When API response is above 200ms
                     if (response.isSuccessful) {
-                        response.body()?.let {
-                            for (result in it) {
+                        response.body()?.let { listUsers ->
+                            for (result in listUsers) {
                                 if (result.username.equals(username)) {
-                                    postsLiveData.value = true
+                                    postsLiveData.value = 1
                                 }
+                            }
+                            //When the username passed doesn't exists show this snack
+                            if (postsLiveData.value != 1) {
+                                postsLiveData.value = 0
                             }
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<ArrayList<Users>>, t: Throwable) {
-
+                    //Only when user is offline is showed this snack
+                    postsLiveData.value = 3
                 }
-            })
-        } else if (username.isNullOrEmpty()){
-            postsLiveData.value = false
-        }
 
+            })
+        } else {
+            //When username comes empty, set number 0 for show the snack bar
+            postsLiveData.value = 2
+        }
     }
 
 }
