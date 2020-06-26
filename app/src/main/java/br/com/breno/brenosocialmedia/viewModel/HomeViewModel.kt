@@ -6,8 +6,4 @@ import androidx.lifecycle.AndroidViewModel
 
 class HomeViewModel(application: Application): AndroidViewModel(application) {
 
-
-    fun initNavigation(context: Context) {
-
-    }
 }
