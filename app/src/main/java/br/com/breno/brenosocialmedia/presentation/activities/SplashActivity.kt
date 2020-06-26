@@ -1,12 +1,10 @@
-package br.com.breno.brenosocialmedia.presentation
+package br.com.breno.brenosocialmedia.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import br.com.breno.brenosocialmedia.R
 
-import kotlinx.android.synthetic.main.activity_splash.*
 import java.lang.Exception
 
 class SplashActivity : AppCompatActivity() {

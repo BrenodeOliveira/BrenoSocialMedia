@@ -1,4 +1,4 @@
-package br.com.breno.brenosocialmedia.presentation
+package br.com.breno.brenosocialmedia.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle

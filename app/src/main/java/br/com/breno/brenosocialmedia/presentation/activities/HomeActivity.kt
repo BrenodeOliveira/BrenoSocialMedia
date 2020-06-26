@@ -1,4 +1,4 @@
-package br.com.breno.brenosocialmedia.presentation
+package br.com.breno.brenosocialmedia.presentation.activities
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,6 +10,17 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+    private val m = BottomNavigationView.OnNavigationItemSelectedListener { item->
+        when(item.itemId) {
+            R.layout.fragment_posts -> {
+                return@OnNavigationItemSelectedListener true
+            }
+            R.layout.fragment_album -> {
+                return@OnNavigationItemSelectedListener true
+            }
+            else -> false
+        }
+    }
     lateinit var mViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

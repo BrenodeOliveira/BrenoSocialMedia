@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentation.SplashActivity"
+            android:name=".presentation.activities.SplashActivity"
             android:label="@string/title_activity_splash"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar">
@@ -24,10 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.LoginActivity"
+            android:name=".presentation.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".presentation.HomeActivity"
+            android:name=".presentation.activities.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
