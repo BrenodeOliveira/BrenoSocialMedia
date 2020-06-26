@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.breno.brenosocialmedia.R
+import br.com.breno.brenosocialmedia.constants.Constants
 import br.com.breno.brenosocialmedia.viewModel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
@@ -40,21 +41,21 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.postsLiveData.observe(this, Observer {
             when {
                 it.equals(1) -> {
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    startActivity(Intent(applicationContext, HomeActivity::class.java))
                 }
                 it.equals(2) -> {
                     Snackbar.make(
-                        constraint_card, "Campo de login vazio",
+                        constraint_card, Constants.Constants.EMPTY_FIELD,
                         Snackbar.LENGTH_LONG).show()
                 }
                 it.equals(3) -> {
                     Snackbar.make(
-                        constraint_card, "Sem conexão com a internet",
+                        constraint_card, Constants.Constants.INTERNET_ERROR,
                         Snackbar.LENGTH_LONG).show()
                 }
                 else -> {
                     Snackbar.make(
-                        constraint_card, "Login incorreto",
+                        constraint_card, Constants.Constants.LOGIN_ERROR,
                         Snackbar.LENGTH_LONG).show()
                 }
             }
