@@ -28,10 +28,10 @@ class PostsFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(PostsViewModel::class.java)
-        
+
     }
 
-    private fun configuraRecycler(posts: ArrayList<Posts>){
+    fun configuraRecycler(posts: ArrayList<Posts>){
         recyclerPosts.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = PostsAdapter(posts)
