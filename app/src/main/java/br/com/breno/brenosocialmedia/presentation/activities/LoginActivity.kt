@@ -1,13 +1,18 @@
 package br.com.breno.brenosocialmedia.presentation.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.breno.brenosocialmedia.R
 import br.com.breno.brenosocialmedia.constants.Constants
+import br.com.breno.brenosocialmedia.sharedPreferences.SharedPreferencesUtils
+import br.com.breno.brenosocialmedia.sharedPreferences.UsuarioUtils
 import br.com.breno.brenosocialmedia.viewModel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
@@ -41,6 +46,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.postsLiveData.observe(this, Observer {
             when {
                 it.equals(1) -> {
+                    checkBoxSetted()
                     startActivity(Intent(applicationContext, HomeActivity::class.java))
                 }
                 it.equals(2) -> {
@@ -62,4 +68,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 
+    private fun checkBoxSetted() {
+        if (checkbox_login.isChecked) {
+            val userName = et_user.text.toString()
+            viewModel.saveUserPreference(this, userName)
+        }
+    }
 }

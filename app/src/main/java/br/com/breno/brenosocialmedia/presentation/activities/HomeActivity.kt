@@ -37,10 +37,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
     }
 
-    private fun navigationClickFragments() {
-
-    }
-
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.container, fragment)

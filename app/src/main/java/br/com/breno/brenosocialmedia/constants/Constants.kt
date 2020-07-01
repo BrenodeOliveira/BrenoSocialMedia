@@ -6,5 +6,9 @@ class Constants private constructor(){
         const val EMPTY_FIELD = "Campo de login vazio"
         const val LOGIN_ERROR = "Login incorreto"
         const val INTERNET_ERROR = "Sem conexão com a internet"
+        const val userDB = "USUARIO_LOGADO"
+        const val userObjeto = "usuario"
+        const val KEY_NAME = "NAME"
+        const val KEY_INFO = "SP_INFO"
     }
 }

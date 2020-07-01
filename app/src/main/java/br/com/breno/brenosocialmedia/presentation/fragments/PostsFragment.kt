@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.breno.brenosocialmedia.R
 import br.com.breno.brenosocialmedia.adapter.PostsAdapter
 import br.com.breno.brenosocialmedia.data.model.Posts
+import br.com.breno.brenosocialmedia.sharedPreferences.UsuarioUtils
 import br.com.breno.brenosocialmedia.viewModel.PostsViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_posts.*
 
 class PostsFragment: Fragment() {
