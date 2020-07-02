@@ -3,12 +3,13 @@ package br.com.breno.brenosocialmedia.viewModel
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.breno.brenosocialmedia.constants.Constants
 
 class SplashViewModel(application: Application): AndroidViewModel(application) {
 
-    val screenLiveData : MutableLiveData<Int> = MutableLiveData()
+    private val userLogged = MutableLiveData<Boolean>()
 
     fun checkUserEntry(context: Context) {
         val sharedPreferences = context
@@ -17,9 +18,13 @@ class SplashViewModel(application: Application): AndroidViewModel(application) {
         val entry = sharedPreferences.getString(Constants.Constants.KEY_NAME, "")
 
         if (entry.isNullOrBlank()) {
-            screenLiveData.value = 0
+            userLogged.postValue(false)
         } else {
-            screenLiveData.value = 1
+            userLogged.postValue(true)
         }
+    }
+
+    fun getUserLogged(): LiveData<Boolean> {
+        return userLogged
     }
 }

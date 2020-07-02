@@ -19,18 +19,30 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        var tela: Int = 0
+
         viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
         viewModel.checkUserEntry(this)
+
+        viewModel.getUserLogged().observe(this, Observer {
+            if (it) {
+                tela = 1
+            }
+        })
 
         val background = object : Thread() {
             override fun run() {
                 try {
                     sleep(2000)
 
-                    viewModel.screenLiveData.observe(this@SplashActivity, Observer {
-                        
-                    })
-                    startActivity(Intent(baseContext, LoginActivity::class.java))
+                    if (tela == 0) {
+                        startActivity(Intent(baseContext, LoginActivity::class.java))
+                    } else {
+                        startActivity(Intent(baseContext, HomeActivity::class.java))
+                    }
+
+
+//                    startActivity(Intent(baseContext, LoginActivity::class.java))
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
