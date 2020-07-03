@@ -8,5 +8,5 @@ import retrofit2.http.GET
 //EndPoint
 interface PostsService {
     @GET("posts")
-    fun getPosts() : Call<List<Posts>>
+    fun getPosts() : Call<ArrayList<Posts>>
 }

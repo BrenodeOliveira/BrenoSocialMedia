@@ -8,7 +8,8 @@ import br.com.breno.brenosocialmedia.R
 import br.com.breno.brenosocialmedia.data.model.Posts
 import kotlinx.android.synthetic.main.item_posts.view.*
 
-class PostsAdapter (val posts: ArrayList<Posts>): RecyclerView.Adapter<ViewHolderPosts>(){
+class PostsAdapter(private val posts: List<Posts>) : RecyclerView.Adapter<PostsAdapter.ViewHolderPosts>(){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderPosts {
         return ViewHolderPosts(
             LayoutInflater.from(parent.context)
@@ -16,19 +17,19 @@ class PostsAdapter (val posts: ArrayList<Posts>): RecyclerView.Adapter<ViewHolde
         )
     }
 
-    override fun getItemCount(): Int = posts.size
+    override fun getItemCount(): Int = posts.count()
 
-    override fun onBindViewHolder(holder: ViewHolderPosts, position: Int) {
-        var post = posts[position]
-        holder.apply {
-            tituloItem.text = post.title
-            textoItem.text = post.body
-        }
+    override fun onBindViewHolder(viewHolder: ViewHolderPosts, position: Int) {
+        viewHolder.bindView(posts[position])
     }
 
-}
+    class ViewHolderPosts(view: View) : RecyclerView.ViewHolder(view) {
+        private val title = view.tituloPost
+        private val body = view.textoPost
 
-class ViewHolderPosts(view: View): RecyclerView.ViewHolder(view) {
-    val tituloItem = view.tituloPost
-    val textoItem = view.textoPost
+        fun bindView(post: Posts) {
+            title.text = post.title
+            body.text = post.body
+        }
+    }
 }

@@ -41,8 +41,6 @@ class SplashActivity : AppCompatActivity() {
                         startActivity(Intent(baseContext, HomeActivity::class.java))
                     }
 
-
-//                    startActivity(Intent(baseContext, LoginActivity::class.java))
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
