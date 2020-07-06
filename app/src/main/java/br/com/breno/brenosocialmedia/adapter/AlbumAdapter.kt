@@ -10,28 +10,22 @@ import br.com.breno.brenosocialmedia.data.model.Album
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_album.view.*
 
-class AlbumAdapter(val albums: ArrayList<Album>): RecyclerView.Adapter<ViewHolderAlbum>() {
+class AlbumAdapter(
+    private val albums: List<Album>
+) : RecyclerView.Adapter<AlbumAdapter.ViewHolderAlbum>() {
 
     lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderAlbum {
-        val viewHolder =  ViewHolderAlbum(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_album, parent, false)
-        )
-
-        context = parent.context
-
-        return viewHolder
+        val itemView: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_album, parent, false)
+        return ViewHolderAlbum(itemView)
     }
 
-    override fun getItemCount(): Int = albums.size
+    override fun getItemCount(): Int = albums.count()
 
-    override fun onBindViewHolder(holder: ViewHolderAlbum, position: Int) {
-        val album = albums[position]
-        holder.apply {
-            tituloItem.text = album.title
-        }
+    override fun onBindViewHolder(viewHolder: ViewHolderAlbum, position: Int) {
+        viewHolder.bindView(albums[position])
 
         val arrayListString = arrayListOf(
             "https://via.placeholder.com/150/771796",
@@ -50,13 +44,22 @@ class AlbumAdapter(val albums: ArrayList<Album>): RecyclerView.Adapter<ViewHolde
 
         Picasso.get()
             .load(arrayListString[position])
-            .fit()
-            .centerCrop()
-            .into(holder.imagemItem)
+            .fit().centerCrop()
+            .into(viewHolder.image)
+    }
+
+    class ViewHolderAlbum(
+        view: View
+    ) : RecyclerView.ViewHolder(view) {
+        val image = view.imagemAlbum
+        private val titulo = view.tituloAlbum
+
+        fun bindView(album: Album) {
+            titulo.text = album.title
+//            image.setImageResource(album.id)
+
+
+        }
     }
 }
 
-class ViewHolderAlbum(view: View) : RecyclerView.ViewHolder(view) {
-    val imagemItem = view.imagemAlbum
-    val tituloItem = view.tituloAlbum
-}

@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import br.com.breno.brenosocialmedia.constants.Constants
+import br.com.breno.brenosocialmedia.constants.userConstant.UsuarioUtils
 import br.com.breno.brenosocialmedia.data.model.Users
 import br.com.breno.brenosocialmedia.data.retrofit.ApiService
 import retrofit2.Call
@@ -15,7 +16,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     val postsLiveData: MutableLiveData<Int> = MutableLiveData()
 
-    fun checkUser(username: String) {
+    fun checkUser(username: String, context: Context) {
         if (username.isNotEmpty()) {
             ApiService.usersService.getUsers().enqueue(object : Callback<ArrayList<Users>> {
                 override fun onResponse(
@@ -27,6 +28,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         response.body()?.let { listUsers ->
                             for (result in listUsers) {
                                 if (result.username.equals(username)) {
+                                    //UsuarioUtils.populaUsuario(getApplication())
+
                                     postsLiveData.value = 1
                                 }
                             }
