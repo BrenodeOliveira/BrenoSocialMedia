@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.activities.GaleriaActivity"></activity>
-        <activity android:name=".presentation.activities.TesteActivity" />
+        <activity android:name=".presentation.activities.GaleriaActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".presentation.activities.SplashActivity"
             android:label="@string/title_activity_splash"

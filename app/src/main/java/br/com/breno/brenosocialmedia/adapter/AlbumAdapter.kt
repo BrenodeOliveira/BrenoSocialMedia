@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.breno.brenosocialmedia.R
 import br.com.breno.brenosocialmedia.data.model.Album
@@ -11,7 +12,8 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_album.view.*
 
 class AlbumAdapter(
-    private val albums: List<Album>
+    private val albums: List<Album>,
+    private val onItemSelectedListener: ((album: Album) -> Unit)
 ) : RecyclerView.Adapter<AlbumAdapter.ViewHolderAlbum>() {
 
     lateinit var context: Context
@@ -19,7 +21,7 @@ class AlbumAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderAlbum {
         val itemView: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_album, parent, false)
-        return ViewHolderAlbum(itemView)
+        return ViewHolderAlbum(itemView, onItemSelectedListener)
     }
 
     override fun getItemCount(): Int = albums.count()
@@ -37,9 +39,7 @@ class AlbumAdapter(
             "https://via.placeholder.com/150/c01edd",
             "https://via.placeholder.com/150/ab5be6",
             "https://via.placeholder.com/150/549689",
-            "https://via.placeholder.com/150/6b1cf4",
-            "https://via.placeholder.com/150/5cc01d",
-            "https://via.placeholder.com/150/776d09"
+            "https://via.placeholder.com/150/6b1cf4"
         )
 
         Picasso.get()
@@ -49,16 +49,18 @@ class AlbumAdapter(
     }
 
     class ViewHolderAlbum(
-        view: View
+        view: View,
+        private val onItemSelectedListener: (album: Album) -> Unit
     ) : RecyclerView.ViewHolder(view) {
         val image = view.imagemAlbum
         private val titulo = view.tituloAlbum
 
         fun bindView(album: Album) {
             titulo.text = album.title
-//            image.setImageResource(album.id)
 
-
+            itemView.setOnClickListener {
+                onItemSelectedListener.invoke(album)
+            }
         }
     }
 }

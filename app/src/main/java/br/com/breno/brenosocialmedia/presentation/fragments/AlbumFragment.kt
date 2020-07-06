@@ -48,7 +48,11 @@ class AlbumFragment: Fragment() {
                     layoutManager =
                         LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                     layoutManager = GridLayoutManager(requireContext(), 2)
-                    adapter = AlbumAdapter(albums)
+                    adapter = AlbumAdapter(albums) {
+                        val intent = Intent(requireContext(), GaleriaActivity::class.java)
+                        //Fazer o putExtras
+                        startActivity(intent)
+                    }
                 }
             }
         })
