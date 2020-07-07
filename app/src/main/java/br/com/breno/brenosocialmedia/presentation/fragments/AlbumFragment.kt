@@ -50,7 +50,7 @@ class AlbumFragment: Fragment() {
                     layoutManager = GridLayoutManager(requireContext(), 2)
                     adapter = AlbumAdapter(albums) {
                         val intent = Intent(requireContext(), GaleriaActivity::class.java)
-                        //Fazer o putExtras
+
                         startActivity(intent)
                     }
                 }
