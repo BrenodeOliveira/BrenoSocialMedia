@@ -23,15 +23,15 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         navigationConfigure()
         val postsFragment = PostsFragment()
         val albumFragment = AlbumFragment()
-//        val mapsFragment = MapsFragment()
+        val mapsFragment = MapsFragment()
 
         setCurrentFragment(postsFragment)
 
-        navigation.setOnNavigationItemSelectedListener{
-            when(it.itemId) {
+        navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
                 R.id.navigation_posts -> setCurrentFragment(postsFragment)
                 R.id.navigation_album -> setCurrentFragment(albumFragment)
-//                R.id.navigation_maps -> setCurrentFragment(mapsFragment)
+                R.id.navigation_maps -> setCurrentFragment(mapsFragment)
             }
             true
         }

@@ -18,6 +18,7 @@ import br.com.breno.brenosocialmedia.R
 import br.com.breno.brenosocialmedia.adapter.PostsAdapter
 import br.com.breno.brenosocialmedia.data.model.Posts
 import br.com.breno.brenosocialmedia.viewModel.PostsViewModel
+import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.fragment_posts.*
 import kotlinx.android.synthetic.main.item_posts.*
 
@@ -38,14 +39,14 @@ class PostsFragment: Fragment() {
         val titulo = viewModel.getTitleName(requireContext().applicationContext)
 
         setCollapsing(titulo)
-//        fillInfos()
+//        fillInfosToolbar()
         observers()
 
         viewModel.fillRecycler()
 
     }
 
-//    private fun fillInfos() {
+//    private fun fillInfosToolbar() {
 //
 //    }
 
