@@ -4,8 +4,10 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import br.com.breno.brenosocialmedia.constants.Constants
+import com.google.android.gms.maps.GoogleMap
 
 class MapsViewModel(application: Application): AndroidViewModel(application) {
+
 
     fun getTitleName(context: Context): String? {
         val sharedPreferences = context
