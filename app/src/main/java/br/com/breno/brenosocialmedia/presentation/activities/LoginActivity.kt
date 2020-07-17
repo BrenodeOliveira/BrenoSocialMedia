@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         val id = v.id
         if (id == R.id.btn_login) {
-            viewModel.checkUser(et_user.text.toString(), this)
+            viewModel.checkUser(et_user.text.toString())
         }
     }
 

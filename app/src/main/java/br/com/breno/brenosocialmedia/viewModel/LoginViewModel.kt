@@ -16,7 +16,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     val postsLiveData: MutableLiveData<Int> = MutableLiveData()
 
-    fun checkUser(username: String, context: Context) {
+    fun checkUser(username: String) {
         if (username.isNotEmpty()) {
             ApiService.usersService.getUsers().enqueue(object : Callback<ArrayList<Users>> {
                 override fun onResponse(
