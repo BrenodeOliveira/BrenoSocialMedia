@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.activities.GaleriaActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".presentation.activities.HomeActivity"/>
         <activity
             android:name=".presentation.activities.SplashActivity"
             android:label="@string/title_activity_splash"

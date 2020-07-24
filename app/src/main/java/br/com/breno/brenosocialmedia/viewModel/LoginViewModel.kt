@@ -28,8 +28,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         response.body()?.let { listUsers ->
                             for (result in listUsers) {
                                 if (result.username.equals(username)) {
-                                    //UsuarioUtils.populaUsuario(getApplication())
-
                                     postsLiveData.value = 1
                                 }
                             }
@@ -51,6 +49,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             //When username comes empty, set number 0 for show the snack bar
             postsLiveData.value = 2
         }
+
     }
 
     fun saveUserPreference(context: Context, username: String) {

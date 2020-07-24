@@ -46,11 +46,16 @@ class GaleriaActivity : AppCompatActivity() {
     }
 
     private fun configureToolbar() {
-        actionBar?.apply {
+        actionBar!!.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             title = "Breninhooo"
         }
         toolbarGaleria.setTitleTextColor(Color.WHITE)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
