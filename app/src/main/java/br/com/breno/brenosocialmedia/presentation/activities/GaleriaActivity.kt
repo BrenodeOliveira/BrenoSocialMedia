@@ -39,7 +39,11 @@ class GaleriaActivity : AppCompatActivity() {
                     layoutManager =
                         LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                     layoutManager = GridLayoutManager(context, 3)
-                    adapter = GaleriaAdapter(photos)
+                    adapter = GaleriaAdapter(photos) {
+                        val intent = Intent(context, ListaUserActivity::class.java)
+
+                        startActivity(intent)
+                    }
                 }
             }
         })

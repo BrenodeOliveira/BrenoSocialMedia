@@ -12,9 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.activities.GaleriaActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".presentation.activities.HomeActivity"/>
+        <activity android:name=".presentation.activities.ListaUserActivity"></activity>
+        <activity
+            android:name=".presentation.activities.GaleriaActivity"
+            android:parentActivityName=".presentation.activities.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".presentation.activities.SplashActivity"
             android:label="@string/title_activity_splash"
@@ -32,6 +34,7 @@
         <activity
             android:name=".presentation.activities.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAudIggRO8gtlrX03h1UVUz0RSzDiuqM0o" />

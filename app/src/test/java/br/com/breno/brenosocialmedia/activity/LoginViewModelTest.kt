@@ -6,6 +6,7 @@ import br.com.breno.brenosocialmedia.viewModel.LoginViewModel
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.Assert.assertEquals
+import okhttp3.internal.notify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,6 +24,7 @@ class LoginViewModelTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
+
     }
 
     @Test
