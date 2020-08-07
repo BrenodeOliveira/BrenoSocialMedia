@@ -1,22 +1,21 @@
 package br.com.breno.brenosocialmedia.presentation.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.breno.brenosocialmedia.R
-import br.com.breno.brenosocialmedia.adapter.UsersAdapter
 import br.com.breno.brenosocialmedia.viewModel.ListaUserViewModel
+import br.com.breno.brenosocialmedia.viewModel.states.ListaUserEvent
 import br.com.breno.brenosocialmedia.viewModel.states.ListaUserStates
 import kotlinx.android.synthetic.main.activity_lista_user.*
-import java.lang.Exception
-import java.util.ArrayList
 
-class ListaUserActivity : AppCompatActivity() {
+class ListaUserActivity : AppCompatActivity(),View.OnClickListener {
 
     private lateinit var viewModel: ListaUserViewModel
-    var adapter : UsersAdapter? = null
+//    var adapter : UsersAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,28 +23,64 @@ class ListaUserActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(ListaUserViewModel::class.java)
 
-        observers()
+        initBtn()
+
+        observersState()
+        observerEvent()
+        setListeners()
     }
 
-    fun observers() {
+    private fun initBtn() {
+        btnTenteNovamente.visibility = View.GONE
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.btnTenteNovamente -> Toast.makeText(this, "Tente novamente", Toast.LENGTH_SHORT).show()
+            R.id.btnToastNome -> Toast.makeText(this, "Nome user", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setListeners() {
+        btnTenteNovamente.setOnClickListener(this)
+        btnToastNome.setOnClickListener(this)
+    }
+
+    private fun observersState() {
         viewModel.viewState.observe(this, Observer { state ->
-            state.let {
+            state?.let {
                 when(it) {
-                    is ListaUserStates.ListaUserSucesso -> preencheRv(it.lista)
+                    is ListaUserStates.ListaUserSucesso -> preencheNome(it.nomeUser)
                     is ListaUserStates.ListaUserError -> exibeErro()
+                }
+            }
+        })
+        viewModel.init()
+    }
+
+    private fun observerEvent() {
+        viewModel.viewEvent.observe(this, Observer { event ->
+            event?.let {
+                when(it) {
+                    is ListaUserEvent.ExibirToast -> getNome()
                 }
             }
         })
     }
 
     private fun exibeErro() {
-        recyclerUsers.visibility = View.GONE
+        txt_name.visibility = View.GONE
         btnTenteNovamente.visibility = View.VISIBLE
+        btnToastNome.visibility = View.GONE
     }
 
-    private fun preencheRv(lista: ArrayList<String>) {
-        recyclerUsers.visibility = View.VISIBLE
+    private fun preencheNome(name: String) {
+        txt_name.visibility = View.VISIBLE
         btnTenteNovamente.visibility = View.GONE
-        adapter?.notifyDataSetChanged() ?: preencheRv(lista)
+        txt_name.text = name
+    }
+
+    private fun getNome() : String {
+        return "Brenito"
     }
 }

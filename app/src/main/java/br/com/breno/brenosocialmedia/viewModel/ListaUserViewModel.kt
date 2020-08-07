@@ -25,7 +25,7 @@ class ListaUserViewModel: ViewModel() {
             viewModelScope.launch {
                 try {
                     state.value = ListaUserStates
-                        .ListaUserSucesso(arrayListOf("Breno", "Breno1","Breno2","Breno3"))
+                        .ListaUserSucesso("Juca")
                     firstTime = false
                 } catch (exception : Exception) {
                     state.value = ListaUserStates.ListaUserError(exception)
@@ -38,5 +38,9 @@ class ListaUserViewModel: ViewModel() {
         when(acao) {
             is ListaUserInteractor.ExibeBotao -> this.init()
         }
+    }
+
+    fun resetEvent() {
+        event.value = null
     }
 }
