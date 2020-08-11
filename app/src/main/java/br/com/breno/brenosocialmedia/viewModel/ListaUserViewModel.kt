@@ -18,6 +18,9 @@ class ListaUserViewModel: ViewModel() {
     private val event: MutableLiveData<ListaUserEvent> = MutableLiveData()
     val viewEvent: MutableLiveData<ListaUserEvent> = event
 
+    private val nameView: MutableLiveData<String> = MutableLiveData()
+    val viewName: MutableLiveData<String> = nameView
+
     private var firstTime = true
 
     fun init() {

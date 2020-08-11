@@ -9,13 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.breno.brenosocialmedia.R
 import br.com.breno.brenosocialmedia.viewModel.ListaUserViewModel
 import br.com.breno.brenosocialmedia.viewModel.states.ListaUserEvent
+import br.com.breno.brenosocialmedia.viewModel.states.ListaUserInteractor
 import br.com.breno.brenosocialmedia.viewModel.states.ListaUserStates
 import kotlinx.android.synthetic.main.activity_lista_user.*
 
 class ListaUserActivity : AppCompatActivity(),View.OnClickListener {
 
     private lateinit var viewModel: ListaUserViewModel
-//    var adapter : UsersAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,9 @@ class ListaUserActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnTenteNovamente -> Toast.makeText(this, "Tente novamente", Toast.LENGTH_SHORT).show()
-            R.id.btnToastNome -> Toast.makeText(this, "Nome user", Toast.LENGTH_SHORT).show()
+            R.id.btnToastNome -> {
+                Toast.makeText(this, "Nome user", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -72,6 +74,8 @@ class ListaUserActivity : AppCompatActivity(),View.OnClickListener {
         txt_name.visibility = View.GONE
         btnTenteNovamente.visibility = View.VISIBLE
         btnToastNome.visibility = View.GONE
+        viewModel.interpretar(ListaUserInteractor.ExibeBotao())
+        viewModel.resetEvent()
     }
 
     private fun preencheNome(name: String) {
