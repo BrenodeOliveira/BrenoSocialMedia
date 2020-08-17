@@ -13,7 +13,7 @@ import br.com.breno.brenosocialmedia.viewModel.states.ListaUserInteractor
 import br.com.breno.brenosocialmedia.viewModel.states.ListaUserStates
 import kotlinx.android.synthetic.main.activity_lista_user.*
 
-class ListaUserActivity : AppCompatActivity(),View.OnClickListener {
+class ListaUserActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ListaUserViewModel
 
@@ -27,31 +27,16 @@ class ListaUserActivity : AppCompatActivity(),View.OnClickListener {
 
         observersState()
         observerEvent()
-        setListeners()
     }
 
     private fun initBtn() {
         btnTenteNovamente.visibility = View.GONE
     }
 
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.btnTenteNovamente -> Toast.makeText(this, "Tente novamente", Toast.LENGTH_SHORT).show()
-            R.id.btnToastNome -> {
-                Toast.makeText(this, "Nome user", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun setListeners() {
-        btnTenteNovamente.setOnClickListener(this)
-        btnToastNome.setOnClickListener(this)
-    }
-
     private fun observersState() {
         viewModel.viewState.observe(this, Observer { state ->
             state?.let {
-                when(it) {
+                when (it) {
                     is ListaUserStates.ListaUserSucesso -> preencheNome(it.nomeUser)
                     is ListaUserStates.ListaUserError -> exibeErro()
                 }
@@ -63,8 +48,8 @@ class ListaUserActivity : AppCompatActivity(),View.OnClickListener {
     private fun observerEvent() {
         viewModel.viewEvent.observe(this, Observer { event ->
             event?.let {
-                when(it) {
-                    is ListaUserEvent.ExibirToast -> getNome()
+                when (it) {
+                    is ListaUserEvent.ExibirToast -> getToast(it.exibe)
                 }
             }
         })
@@ -82,9 +67,12 @@ class ListaUserActivity : AppCompatActivity(),View.OnClickListener {
         txt_name.visibility = View.VISIBLE
         btnTenteNovamente.visibility = View.GONE
         txt_name.text = name
+        btnToastNome.setOnClickListener {
+            viewModel.init()
+        }
     }
 
-    private fun getNome() : String {
-        return "Brenito"
+    private fun getToast(phrase: String) {
+        Toast.makeText(this, phrase, Toast.LENGTH_LONG).show()
     }
 }
